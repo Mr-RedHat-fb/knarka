@@ -1,7 +1,8 @@
 # Knarka – Flashback Drogakuten-watcher
 
 Det här projektet bevakar nya trådar i **Drogakuten** på Flashback och postar dem till en Discord-webhook.
-Watchern kan köras som CLI eller helt tyst i bakgrunden.
+
+[Se Screenshots](#screenshot)
 
 ## 1. Skapa en Discord-webhook
 
