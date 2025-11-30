@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { runWatcher } from "./flashback/watcher.js";
+import { startTestApi } from "./api/server.js";
 
 function randomInterval() {
   const min = 22000;
@@ -19,16 +20,16 @@ async function loop() {
 
 const args = process.argv.slice(2);
 
-if (args.includes("--inte")) {
+if (args.includes("--api")) {
+  // starta bara test-API
+  startTestApi(3000);
+} else if (args.includes("--inte")) {
   console.log("Watchern stoppas.");
   process.exit(0);
+} else {
+  if (args.includes("--nu")) {
+    console.log("Watchern startar…");
+  }
+  loop();
 }
-
-// Om `--nu` finns: skriv ett meddelande.
-// Om inga args: starta tyst headless.
-if (args.includes("--nu")) {
-  console.log("Watchern startar… (headless)");
-}
-
-loop();
 
