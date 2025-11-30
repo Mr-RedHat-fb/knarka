@@ -47,7 +47,7 @@ Ladda ner och installera från:
 Gå till projektroten i terminalen:
 
 ```bash
-npm install -g
+npm install -g .
 ```
 
 Det gör kommandot `knarka` tillgängligt överallt på systemet.
