@@ -1,5 +1,6 @@
 // src/flashback/fetch.js
 import fetch from "node-fetch";
+import iconv from "iconv-lite";
 
 const NEW_THREADS_URL = "https://www.flashback.org/nya-amnen";
 
@@ -11,9 +12,15 @@ export async function fetchNewThreadsHtml() {
   });
 
   if (!res.ok) {
-    throw new Error(`Kunde inte hämta nya ämnen: ${res.status} ${res.statusText}`);
+    throw new Error(`Kunde inte hämta: ${res.status} ${res.statusText}`);
   }
 
-  return res.text();
+  // Läs rå bytes
+  const buffer = await res.arrayBuffer();
+
+  // Konvertera ISO-8859-1 → UTF-8
+  const html = iconv.decode(Buffer.from(buffer), "latin1");
+
+  return html;
 }
 
